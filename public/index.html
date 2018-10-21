@@ -171,9 +171,9 @@
                     </div>
                     <label>차준호</label>
                   </div>
-                  <button class="mdc-fab mdc-fab--extended ml-2 add-opinion">
-                    <span class="material-icons mdc-fab__icon">add</span>
-                    <span class="mdc-fab__label">발언하기</span>
+                  <button class="mdc-button mdc-button--raised ml-2 add-opinion">
+                      <i class="material-icons mdc-button__icon" aria-hidden="true">add</i>
+                    <span class="mdc-typography--button">발언하기</span>
                   </button>
                 </div>
               </div>
@@ -238,7 +238,7 @@
             $(this).attr('name', snapshot.key);
           });
           mdc.textField.MDCTextField.attachTo($cloned[0].querySelector('.mdc-text-field'));
-          mdc.ripple.MDCRipple.attachTo($cloned[0].querySelector('.mdc-fab'));
+          mdc.ripple.MDCRipple.attachTo($cloned[0].querySelector('.mdc-button'));
           $cloned.removeClass('d-none')
             .removeClass('new')
             .prependTo($new.parent());
@@ -293,12 +293,6 @@
           });
 
         const buttonRipple = new mdc.ripple.MDCRipple(document.querySelector('.mdc-button'));
-
-        [].slice.call(document.querySelectorAll('.mdc-fab')).forEach(
-          function (ele) {
-            mdc.ripple.MDCRipple.attachTo(ele);
-          });
-
         const threadDialog = new mdc.dialog.MDCDialog(document.querySelector('.thread-dialog'));
         $('#thread-dialog-cancel').on('click', function () {
           threadDialog.close();
