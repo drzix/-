@@ -1,65 +1,376 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
+<html lang="ko">
 
-    <!-- update the version number as needed -->
-    <script defer src="/__/firebase/5.5.5/firebase-app.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/5.5.5/firebase-auth.js"></script>
-    <script defer src="/__/firebase/5.5.5/firebase-database.js"></script>
-    <script defer src="/__/firebase/5.5.5/firebase-messaging.js"></script>
-    <script defer src="/__/firebase/5.5.5/firebase-storage.js"></script>
-    <!-- initialize the SDK after all desired features are loaded -->
-    <script defer src="/__/firebase/init.js"></script>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>인하대 서양고대철학사 9조</title>
 
-    <style media="screen">
-      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
-      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
-      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
-      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
-      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
-      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
-      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
-      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
-      @media (max-width: 600px) {
-        body, #message { margin-top: 0; background: white; box-shadow: none; }
-        body { border-top: 16px solid #ffa100; }
+  <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css" />
+  <link href="https://fonts.googleapis.com/css?family=Gothic+A1:200" rel="stylesheet">
+  <style>
+    * {
+        margin: 0;
+        padding: 0;
+        word-break: break-all;
+      }
+
+      :root {
+        --mdc-theme-primary: #421130;
+        --mdc-theme-secondary: #42887e;
+      }
+
+      .mdc-typography--headline4 {
+        font-family: 'Gothic A1';
+        font-weight: 200;
+      }
+
+      ul {
+        margin: 0;
+      }
+
+      li {
+        list-style: none;
+      }
+
+      button {
+        outline: none !important;
+      }
+
+      .main {
+        padding-top: 64px;
+      }
+
+      .opinions > li:nth-child(n) {
+        background: #fff9f9;
+      }
+
+      .opinions > li:last-child {
+        background: #ffecec;
+      }
+
+      .mdc-text-field--textarea:not(.mdc-text-field--disabled) {
+        border-color: rgba(98, 0, 238, 0.2);
+      }
+
+      .mdc-top-app-bar__title {
+        cursor: pointer;
       }
     </style>
-  </head>
-  <body>
-    <div id="message">
-      <h2>Welcome</h2>
-      <h1>Firebase Hosting Setup Complete</h1>
-      <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
-      <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+  <script>new WOW().init();</script>
+  <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase.js"></script>
+  <!-- update the version number as needed -->
+  <script defer src="/__/firebase/5.5.5/firebase-app.js"></script>
+  <!-- include only the Firebase features as you need -->
+  <script defer src="/__/firebase/5.5.5/firebase-database.js"></script>
+  <script defer src="/__/firebase/5.5.5/firebase-storage.js"></script>
+  <!-- initialize the SDK after all desired features are loaded -->
+  <script defer src="/__/firebase/init.js"></script>
+
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyAb_TRZQljIRPuWdbK0DC9ArFBi717yjJs",
+      authDomain: "republic-plato.firebaseapp.com",
+      databaseURL: "https://republic-plato.firebaseio.com",
+      projectId: "republic-plato",
+      storageBucket: "republic-plato.appspot.com",
+      messagingSenderId: "1024556202899"
+    };
+    firebase.initializeApp(config);
+    var db = firebase.database();
+  </script>
+</head>
+
+<body>
+  <header class="mdc-top-app-bar mdc-elevation--z4 mdc-elevation-transition">
+    <div class="mdc-top-app-bar__row">
+      <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+        <span class="mdc-top-app-bar__title">플라톤의 국가에 대하여 / 인하대 서양고대철학사 9조</span>
+      </section>
     </div>
-    <p id="load">Firebase SDK Loading&hellip;</p>
+  </header>
 
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-        // // The Firebase SDK is initialized and available here!
-        //
-        // firebase.auth().onAuthStateChanged(user => { });
-        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-        // firebase.messaging().requestPermission().then(() => { });
-        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-        //
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+  <div class="main">
+    <div class="container text-center pt-5">
+      <div class="mdc-text-field col-sm-8">
+        <input type="text" id="input-thread" class="mdc-text-field__input">
+        <label class="mdc-floating-label" for="my-text-field">토론하고 싶은 주제를 입력하세요!</label>
+        <div class="mdc-line-ripple"></div>
+      </div>
+      <button id="add-thread" class="mdc-button mdc-button--raised ml-2 mt-2">
+        <i class="material-icons mdc-button__icon" aria-hidden="true">note_add</i>
+        <span class="mdc-typography--button">주제 던지기</span>
+      </button>
+    </div>
+    <div class="pt-5">
+      <div class="mdc-layout-grid">
+        <div class="mdc-layout-grid__inner">
 
-        try {
-          let app = firebase.app();
-          let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
-          document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
-        } catch (e) {
-          console.error(e);
-          document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
+
+
+          <div class="mdc-layout-grid__cell new thread-container d-none wow tada">
+            <div class="mdc-card">
+              <div class="mdc-card__primary-action p-3">
+                <div class="mdc-typography--headline4">
+                  <i class="material-icons mdc-button__icon" aria-hidden="true">format_quote</i><br />
+                  <div class="thread-subject"></div>
+                </div>
+              </div>
+              <div>
+                <ul class="opinions">
+                  <li class="p-3 new d-none opinion-container wow fadeIn">
+                    <div>
+                      <span class="mdc-typography--headline6 author"></span>
+                      <span class="text-muted created-time"></span>
+                    </div>
+                    <div class="content">
+                    </div>
+                  </li>
+                </ul>
+                <div class="mdc-text-field mdc-text-field--textarea">
+                  <textarea class="mdc-text-field__input input-opinion" rows="3" cols="40"></textarea>
+                  <label for="textarea" class="mdc-floating-label">토론을 이어나가보세요!</label>
+                </div>
+                <div class="text-right p-2">
+                  <div class="mdc-form-field">
+                    <div class="mdc-radio">
+                      <input class="mdc-radio__native-control author-radio" type="radio" data-author="0">
+                      <div class="mdc-radio__background">
+                        <div class="mdc-radio__outer-circle"></div>
+                        <div class="mdc-radio__inner-circle"></div>
+                      </div>
+                    </div>
+                    <label>김태훈</label>
+                  </div>
+                  <div class="mdc-form-field">
+                    <div class="mdc-radio">
+                      <input class="mdc-radio__native-control author-radio" type="radio" data-author="1">
+                      <div class="mdc-radio__background">
+                        <div class="mdc-radio__outer-circle"></div>
+                        <div class="mdc-radio__inner-circle"></div>
+                      </div>
+                    </div>
+                    <label>조경민</label>
+                  </div>
+                  <div class="mdc-form-field">
+                    <div class="mdc-radio">
+                      <input class="mdc-radio__native-control author-radio" type="radio" data-author="2">
+                      <div class="mdc-radio__background">
+                        <div class="mdc-radio__outer-circle"></div>
+                        <div class="mdc-radio__inner-circle"></div>
+                      </div>
+                    </div>
+                    <label>차준호</label>
+                  </div>
+                  <button class="mdc-fab mdc-fab--extended ml-2 add-opinion">
+                    <span class="material-icons mdc-fab__icon">add</span>
+                    <span class="mdc-fab__label">발언하기</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mdc-dialog thread-dialog" role="alertdialog" aria-modal="true" aria-labelledby="my-dialog-title"
+    aria-describedby="my-dialog-content">
+    <div class="mdc-dialog__container">
+      <div class="mdc-dialog__surface">
+        <h2 class="mdc-dialog__title">
+          토론 주제를 추가합니다
+        </h2>
+        <div class="mdc-dialog__content">
+          정말로 추가하실건가요?
+        </div>
+        <footer class="mdc-dialog__actions">
+          <button type="button" id="thread-dialog-cancel" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="cancel">아뇨...</button>
+          <button type="button" id="thread-dialog-accept" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="accept">네!</button>
+        </footer>
+      </div>
+    </div>
+    <div class="mdc-dialog__scrim"></div>
+  </div>
+
+  <div class="mdc-dialog alert-dialog" role="alertdialog" aria-modal="true" aria-labelledby="my-dialog-title"
+    aria-describedby="my-dialog-content">
+    <div class="mdc-dialog__container">
+      <div class="mdc-dialog__surface">
+        <h2 class="mdc-dialog__title" id="alert-dialog-title">
+        </h2>
+        <div class="mdc-dialog__content" id="alert-dialog-content">
+        </div>
+        <footer class="mdc-dialog__actions">
+          <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="accept">네, 알겠어요!</button>
+        </footer>
+      </div>
+    </div>
+    <div class="mdc-dialog__scrim"></div>
+  </div>
+
+  <script>
+    (function ($) {
+      'use strict';
+
+      function initThread() {
+        db.ref('thread').on('child_added', function (snapshot) {
+          var $new = $('.thread-container.new');
+          var data = snapshot.val();
+
+          var $cloned = $new.clone(true);
+          $cloned.find('.thread-subject').text(data.subject);
+          $cloned.find('.add-opinion').attr('data-key', snapshot.key);
+          $cloned.attr('id', snapshot.key);
+          $cloned.find('.author-radio').each(function () {
+            $(this).attr('name', snapshot.key);
+          });
+          mdc.textField.MDCTextField.attachTo($cloned[0].querySelector('.mdc-text-field'));
+          mdc.ripple.MDCRipple.attachTo($cloned[0].querySelector('.mdc-fab'));
+          $cloned.removeClass('d-none')
+            .removeClass('new')
+            .prependTo($new.parent());
+
+          initOpinion(snapshot.key);
+        });
+      }
+
+      function initOpinion(threadKey) {
+        db.ref('thread/' + threadKey + '/opinion').on('child_added', function (snapshot) {
+          var $new = $('#' + threadKey + ' .opinion-container.new');
+          var data = snapshot.val();
+          var authorName = ['김태훈', '조경민', '차준호'];
+
+          var $cloned = $new.clone(true);
+          $cloned.find('.author').text(authorName[data.author]);
+          $cloned.find('.created-time').text(new Date(data.createdTime).toLocaleString());
+          $cloned.find('.content').text(data.content);
+          $cloned.removeClass('d-none')
+            .removeClass('new')
+            .appendTo($new.parent());
+        })
+      }
+
+      function addThread(newThread) {
+        var time = Date.now();
+
+        var data = {
+          subject: newThread,
+          createdTime: time
+        };
+        db.ref('thread').push(data, function (err) { });
+      }
+
+      function addOpinion(newOpinion, authorIdx, threadKey) {
+        var time = Date.now();
+
+        var data = {
+          author: authorIdx,
+          content: newOpinion,
+          createdTime: time
+        };
+        db.ref('thread/' + threadKey + '/opinion').push(data, function (err) { });
+      }
+
+      $(document).ready(function () {
+        const topAppBar = new mdc.topAppBar.MDCTopAppBar(document.querySelector('.mdc-top-app-bar'));
+
+        [].slice.call(document.querySelectorAll('.mdc-text-field')).forEach(
+          function (ele) {
+            mdc.textField.MDCTextField.attachTo(ele);
+          });
+
+        const buttonRipple = new mdc.ripple.MDCRipple(document.querySelector('.mdc-button'));
+
+        [].slice.call(document.querySelectorAll('.mdc-fab')).forEach(
+          function (ele) {
+            mdc.ripple.MDCRipple.attachTo(ele);
+          });
+
+        const threadDialog = new mdc.dialog.MDCDialog(document.querySelector('.thread-dialog'));
+        $('#thread-dialog-cancel').on('click', function () {
+          threadDialog.close();
+        });
+        $('#thread-dialog-accept').on('click', function () {
+          var $inputThread = $('#input-thread');
+          var newThread = $inputThread.val().trim();
+
+          addThread(newThread);
+
+          $inputThread.val('');
+          threadDialog.close();
+        });
+
+        const alertDialog = new mdc.dialog.MDCDialog(document.querySelector('.alert-dialog'));
+
+        var alertOptTable = {
+          'no_string': {
+            title: '글자수가 부족합니다!',
+            content: '다섯 글자 이상 입력해주세요!'
+          },
+          'no_radio': {
+            title: '작성자를 체크하세요!',
+            content: '당신은 누구입니까?'
+          }
         }
+        function doAlert(option) {
+          $('#alert-dialog-title').text(alertOptTable[option].title);
+          $('#alert-dialog-content').text(alertOptTable[option].content);
+          alertDialog.open();
+        }
+
+        initThread();
+
+        $('#add-thread').on('click', function () {
+          var $inputThread = $('#input-thread');
+          var newThread = $inputThread.val().trim();
+
+          if (newThread.length < 5) {
+            doAlert('no_string');
+            return false;
+          }
+
+          threadDialog.open();
+        });
+
+        $('.add-opinion').on('click', function () {
+          var $inputOpinion = $(this).parent().parent().find('.input-opinion');
+          var authorIdx = Number($(this).parent().find('.author-radio:checked').attr('data-author'));
+          var newOpinion = $inputOpinion.val().trim();
+          var threadKey = $(this).attr('data-key');
+
+          if (newOpinion.length < 5) {
+            doAlert('no_string');
+            return false;
+          }
+
+          if (isNaN(authorIdx)) {
+            doAlert('no_radio');
+            return false;
+          }
+
+          addOpinion(newOpinion, authorIdx, threadKey);
+          $inputOpinion.val('');
+        });
+
+        $('.mdc-top-app-bar__title').on('click', function() {
+          location.reload();
+        });
       });
-    </script>
-  </body>
+    }(jQuery));
+  </script>
+</body>
+
 </html>
