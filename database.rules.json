@@ -1,14 +1,15 @@
 {
   "rules": {
     "thread": {
+      ".read": true,
       "$thread": {
-        ".read": true,
         ".write": true,
         ".validate": "newData.hasChildren(['subject', 'createdTime']) && newData.child('subject').isString() && newData.child('subject').val().length > 4 && newData.child('createdTime').isNumber()",
         "opinion": {
-          ".write": true,
-          ".read": true,
-          ".validate": "newData.hasChildren(['author', 'content', 'createdTime']) && newData.child('author').isNumber() && newData.child('author').val().length > 0 && newData.child('author').val().length < 3 && newData.child('content').isString() && newData.child('content').val().length > 4 && newData.child('createdTime').isNumber()"
+          "$opinion": {
+            ".write": true,
+            ".validate": "newData.hasChildren(['author', 'content', 'createdTime']) && newData.child('author').isNumber() && newData.child('author').val() > 0 && newData.child('author').val() < 3 && newData.child('content').isString() && newData.child('content').val().length > 4 && newData.child('createdTime').isNumber()"
+          }
         }
       }
     }
