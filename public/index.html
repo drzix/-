@@ -71,7 +71,7 @@
   <script defer src="https://www.gstatic.com/firebasejs/5.5.5/firebase-app.js"></script>
   <!-- include only the Firebase features as you need -->
   <script defer src="https://www.gstatic.com/firebasejs/5.5.5/firebase-database.js"></script>
-  <script defer src="https://www.gstatic.com/firebasejs/5.5.5/firebase-storage.js"></script>
+  <!-- <script defer src="https://www.gstatic.com/firebasejs/5.5.5/firebase-storage.js"></script> -->
   <!-- initialize the SDK after all desired features are loaded -->
   <!-- <script defer src="/__/firebase/init.js"></script> -->
 
@@ -171,8 +171,18 @@
                     </div>
                     <label>차준호</label>
                   </div>
+                  <div class="mdc-form-field">
+                    <div class="mdc-radio">
+                      <input class="mdc-radio__native-control author-radio" type="radio" data-author="3">
+                      <div class="mdc-radio__background">
+                        <div class="mdc-radio__outer-circle"></div>
+                        <div class="mdc-radio__inner-circle"></div>
+                      </div>
+                    </div>
+                    <label>김동환</label>
+                  </div>
                   <button class="mdc-button mdc-button--raised ml-2 add-opinion">
-                      <i class="material-icons mdc-button__icon" aria-hidden="true">add</i>
+                    <i class="material-icons mdc-button__icon" aria-hidden="true">add</i>
                     <span class="mdc-typography--button">발언하기</span>
                   </button>
                 </div>
@@ -251,7 +261,7 @@
         db.ref('thread/' + threadKey + '/opinion').on('child_added', function (snapshot) {
           var $new = $('#' + threadKey + ' .opinion-container.new');
           var data = snapshot.val();
-          var authorName = ['김태훈', '조경민', '차준호'];
+          var authorName = ['김태훈', '조경민', '차준호', '김동환'];
 
           var $cloned = $new.clone(true);
           $cloned.find('.author').text(authorName[data.author]);
@@ -359,7 +369,7 @@
           $inputOpinion.val('');
         });
 
-        $('.mdc-top-app-bar__title').on('click', function() {
+        $('.mdc-top-app-bar__title').on('click', function () {
           location.reload();
         });
       });

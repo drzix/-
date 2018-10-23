@@ -8,7 +8,7 @@
         "opinion": {
           "$opinion": {
             ".write": true,
-            ".validate": "newData.hasChildren(['author', 'content', 'createdTime']) && newData.child('author').isNumber() && newData.child('author').val() >= 0 && newData.child('author').val() < 3 && newData.child('content').isString() && newData.child('content').val().length > 4 && newData.child('createdTime').isNumber()"
+            ".validate": "newData.hasChildren(['author', 'content', 'createdTime']) && newData.child('author').isNumber() && newData.child('author').val() >= 0 && newData.child('author').val() < 4 && newData.child('content').isString() && newData.child('content').val().length > 4 && newData.child('createdTime').isNumber()"
           }
         }
       }
